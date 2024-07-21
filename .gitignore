@@ -1,2 +1,8 @@
+# Ignore SCSS source file
+index.scss
+
+# Ignore source map file
+index.css.map
+
+# Ignore Vercel configuration directory
 .vercel
-Index.scss
