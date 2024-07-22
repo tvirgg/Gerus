@@ -5,7 +5,6 @@ let sections = document.querySelectorAll("section"),
   headings = gsap.utils.toArray(".section-heading"),
   outerWrappers = gsap.utils.toArray(".outer"),
   innerWrappers = gsap.utils.toArray(".inner"),
-  splitHeadings = headings.map(heading => new SplitText(heading, { type: "chars,words,lines", linesClass: "clip-text" })),
   currentIndex = -1,
   wrap = gsap.utils.wrap(0, sections.length),
   animating;
@@ -13,13 +12,25 @@ let sections = document.querySelectorAll("section"),
 gsap.set(outerWrappers, { yPercent: 100 });
 gsap.set(innerWrappers, { yPercent: -100 });
 
+function splitTextToChars(element) {
+  let text = element.textContent;
+  element.innerHTML = '';
+  text.split('').forEach(char => {
+    let span = document.createElement('span');
+    span.textContent = char;
+    element.appendChild(span);
+  });
+}
+
+headings.forEach(splitTextToChars);
+
 function gotoSection(index, direction) {
   index = wrap(index); // make sure it's valid
   animating = true;
   let fromTop = direction === -1,
       dFactor = fromTop ? -1 : 1,
       tl = gsap.timeline({
-        defaults: { duration: 0.9, ease: "power1.inOut" },
+        defaults: { duration: 0.85, ease: "power1.inOut" },
         onComplete: () => animating = false
       });
   if (currentIndex >= 0) {
@@ -35,7 +46,7 @@ function gotoSection(index, direction) {
       yPercent: 0 
     }, 0)
     .fromTo(images[index], { yPercent: 15 * dFactor }, { yPercent: 0 }, 0)
-    .fromTo(splitHeadings[index].chars, { 
+    .fromTo(headings[index].querySelectorAll('span'), { 
         autoAlpha: 0, 
         yPercent: 150 * dFactor
     }, {
@@ -62,9 +73,6 @@ Observer.create({
 });
 
 gotoSection(0, 1);
-
-// original: https://codepen.io/BrianCross/pen/PoWapLP
-// horizontal version: https://codepen.io/GreenSock/pen/xxWdeMK
 
 document.addEventListener('DOMContentLoaded', () => {
   let hamburger = document.getElementById('hamburger');
