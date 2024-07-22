@@ -19,7 +19,7 @@ function gotoSection(index, direction) {
   let fromTop = direction === -1,
       dFactor = fromTop ? -1 : 1,
       tl = gsap.timeline({
-        defaults: { duration: 1.25, ease: "power1.inOut" },
+        defaults: { duration: 0.9, ease: "power1.inOut" },
         onComplete: () => animating = false
       });
   if (currentIndex >= 0) {
@@ -68,23 +68,6 @@ gotoSection(0, 1);
 
 document.addEventListener('DOMContentLoaded', () => {
   let hamburger = document.getElementById('hamburger');
-
-  // Добавим начальный класс
-  hamburger.classList.add('is-closed');
-
-  hamburger.addEventListener('click', () => {
-    if (hamburger.classList.contains('is-open')) {
-      hamburger.classList.remove('is-open');
-      hamburger.classList.add('is-closed');
-    } else {
-      hamburger.classList.remove('is-closed');
-      hamburger.classList.add('is-open');
-    }
-  });
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-  let hamburger = document.getElementById('hamburger');
   let logoContainer = document.getElementById('logo-container');
 
   // Добавим начальный класс
@@ -100,12 +83,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-    // Анимация для логотипа и названия компании при загрузке страницы
-    gsap.from(logoContainer, {
-      duration: 1,
-      y: -50,
-      opacity: 0,
-      ease: 'power2.out',
-      delay: 0.7 // Задержка перед началом анимации в 0.5 секунды
-    });
+  // Анимация для логотипа и названия компании при загрузке страницы
+  gsap.from(logoContainer, {
+    duration: 1,
+    y: -50,
+    opacity: 0,
+    ease: 'power2.out',
+    delay: 1 // Задержка перед началом анимации в 0.5 секунды
+  });
 });
