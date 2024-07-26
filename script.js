@@ -113,3 +113,56 @@ document.addEventListener('DOMContentLoaded', () => {
 
     hamburger.addEventListener('click', toggleSidebar);
 });
+
+const slides = [
+  {
+    background: 'url("../images/Slider_info_fst.png")',
+    title: 'Integration of AI into the company',
+    text: 'Automation of customer service, including making appointments, processing orders, and answering frequently asked questions.'
+  },
+  {
+    background: 'url("../images/Slider_info_sec.png")',
+    title: 'Coaching and training',
+    text: 'Providing AI coaching and training to help your team utilize AI tools effectively.'
+  },
+  {
+    background: 'url("../images/Slider_info_third.png")',
+    title: 'Basic course of using AI at work',
+    text: 'A foundational course on implementing AI strategies in everyday business tasks.'
+  },
+  {
+    background: 'url("../images/Slider_info.png")',
+    title: 'Advanced AI solutions',
+    text: 'Explore advanced AI solutions tailored to your business needs.'
+  }
+];
+
+let currentSlide = 0;
+
+function updateSlide(index) {
+  const layers = document.querySelectorAll('.background-layer');
+  layers[currentSlide].classList.remove('visible');
+  layers[currentSlide].classList.add('hidden');
+
+  currentSlide = (index + slides.length) % slides.length;
+
+  layers[currentSlide].classList.remove('hidden');
+  layers[currentSlide].classList.add('visible');
+
+  document.getElementById('slider-title').innerText = slides[currentSlide].title;
+  document.getElementById('slider-text').innerText = slides[currentSlide].text;
+
+  updateIndicators();
+}
+
+function nextSlide() {
+  updateSlide(currentSlide + 1);
+}
+
+function prevSlide() {
+  updateSlide(currentSlide - 1);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  updateSlide(currentSlide); // Initialize the first slide
+});
