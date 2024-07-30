@@ -84,6 +84,16 @@ section .bg .clip-text {
   overflow: hidden;
 }
 
+.one_nav {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  left: 100px;
+}
+.one_nav a {
+  margin: 5px;
+}
+
 .container {
   cursor: pointer;
   display: flex;
@@ -758,6 +768,16 @@ h2 * {
   height: 100px; /* Высота шара */
   background: #87C3CD;
   border-radius: 50%; /* Делает элемент круглым */
+}
+
+.footer_nav {
+  position: absolute;
+  bottom: 15px;
+  display: flex;
+  align-items: center;
+}
+.footer_nav a {
+  margin: 10px;
 }
 
 /*# sourceMappingURL=index.css.map */
