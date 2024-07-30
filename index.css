@@ -1,3 +1,4 @@
+@charset "UTF-8";
 * {
   box-sizing: border-box;
   user-select: none;
@@ -530,6 +531,7 @@ h2 * {
 }
 
 .fourth_boxes {
+  z-index: 3;
   width: 50%;
 }
 
@@ -565,10 +567,10 @@ h2 * {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  z-index: 4;
 }
 
 .fourth_boxes__box {
-  z-index: 2;
   display: block;
   height: 180px;
   width: 180px;
@@ -599,8 +601,8 @@ h2 * {
   padding: 30px;
   color: #073950;
   font-size: 20px;
-  opacity: 0;
-  transition: opacity 0.5s ease;
+  opacity: 0; /* Начальное состояние - невидимы */
+  transition: opacity 1.5s ease;
 }
 .fourth_boxes__box.visible {
   opacity: 1;

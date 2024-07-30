@@ -1,6 +1,5 @@
-console.log(document.querySelectorAll('.bg')); // Или другие селекторы
-gsap.registerPlugin(Observer);
-document.addEventListener("DOMContentLoaded", () => {
+  gsap.registerPlugin(Observer);
+  document.addEventListener("DOMContentLoaded", () => {
     let sections = document.querySelectorAll("section"),
         images = document.querySelectorAll(".bg"),
         headings = gsap.utils.toArray(".section-heading"),
@@ -68,17 +67,28 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }, 0.2);
 
+        // Добавление класса visible к текущим боксам
+        const currentBoxes = document.querySelectorAll('.fourth_boxes__box');
+        currentBoxes.forEach(box => {
+            if (box) {
+                box.classList.add('visible');
+            }
+        });
+
         currentIndex = index;
-        Observer.create({
-          type: "wheel,touch,pointer",
-          wheelSpeed: -1,
-          onDown: () => !animating && gotoSection(currentIndex - 1, -1),
-          onUp: () => !animating && gotoSection(currentIndex + 1, 1),
-          tolerance: 10,
-          preventDefault: true
-      });
     }
+
+    Observer.create({
+      type: "wheel,touch,pointer",
+      wheelSpeed: -1,
+      onDown: () => !animating && gotoSection(currentIndex - 1, -1),
+      onUp: () => !animating && gotoSection(currentIndex + 1, 1),
+      tolerance: 10,
+      preventDefault: true
+  });
+
     gotoSection(0, 1);
+
     let hamburger = document.getElementById('hamburger');
     let sidebar = document.getElementById('sidebar');
     let body = document.body;
@@ -153,6 +163,9 @@ function updateSlide(index) {
     box.className = 'fourth_boxes__box';
     box.innerText = boxText;
     boxesContainer.appendChild(box);
+    setTimeout(() => {
+      box.classList.add('visible');
+    }, 100); // Задержка для плавного появления
   });
 
   content.classList.add('fade-in');
