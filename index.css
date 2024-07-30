@@ -263,6 +263,13 @@ section .bg .clip-text {
   background-position: 50% 45%;
 }
 
+.advantages {
+  visibility: visible;
+}
+.advantages .bg {
+  background-image: url("./images/advetages.png");
+}
+
 h2 * {
   will-change: transform;
 }
@@ -713,6 +720,44 @@ h2 * {
   color: #224E3F;
   background: rgba(255, 255, 255, 0.512);
   border: 2px #EAC6C8 solid;
+}
+
+.advantages_buton {
+  padding: 30px 130px;
+  width: auto;
+  height: auto;
+  color: #224E3F;
+  font-weight: 100;
+  font-size: 50px;
+  margin-bottom: 150px;
+  border-color: #ffffff;
+}
+
+.advantages_bg {
+  display: flex;
+  flex-direction: column;
+  font-weight: 100;
+  justify-content: center;
+}
+
+.advantages_li {
+  font-size: 45px;
+  font-weight: 100;
+  line-height: 145px;
+  text-align: left;
+  position: relative; /* Добавляем позиционирование, чтобы псевдоэлемент позиционировался относительно этого блока */
+}
+
+.advantages_li::before {
+  content: "";
+  position: absolute;
+  left: -150px; /* Сдвигаем шар влево от текста */
+  top: 50%; /* Центрируем по вертикали */
+  transform: translateY(-50%); /* Корректируем позиционирование по вертикали */
+  width: 100px; /* Ширина шара */
+  height: 100px; /* Высота шара */
+  background: #87C3CD;
+  border-radius: 50%; /* Делает элемент круглым */
 }
 
 /*# sourceMappingURL=index.css.map */
